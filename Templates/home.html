@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewprt">
+        <title>Hotels Search App</title>
+        <script
+  src="https://code.jquery.com/jquery-3.6.0.min.js"
+  integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+  crossorigin="anonymous"></script>
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    </head>
+    <style>
+        .fo{
+            
+position: fixed;  
+left: 0px;  
+bottom: 0px;  
+right: 10px;   
+width: 100%;  
+background-color: gray;  
+color: white;  
+text-align: center;  
+            
+
+        }
+    </style>
+    <body>
+         <nav class="blue darken-1">
+           
+            <div class="nav-wrapper">
+                <a href="/" class="brand-logo">Hotel Search App</a>
+                <ul id="nav-mobile" class="right hide-on-med-and-down">
+                  <li><a href="{% url 'home' %}">Home</a></li>
+                  <li><a href="{% url 'about' %}">About-Us</a></li>
+                  <li><a href="{% url 'facility' %}">Services</a></li>
+                  <li> <form>
+                    <div class="input-field">
+                      <input id="search" type="search" required>
+                      <label class="label-icon" for="search"><i class="material-icons">Search</i></label>
+                      <i class="material-icons">close</i>
+                    </div>
+                  </form></li>
+                </ul>
+               
+              </div>
+        </nav> 
+
+        <div class="container" style="margin-top:50px">
+            <div class="row">
+                <div class="col m4">
+                    <div class="input-field col s12">
+                        <select multiple onchange="getHotels()"id="emenities">
+                            <option value=""disabled selected>choose your option </option>
+                            {% for emenitie in emenities%}
+                            <option value="{{emenitie.id}}">{{emenitie.name}}</option>
+                            {% endfor %}
+                        </select>
+                        <label>Select Emenities</label>
+                    </div>
+                </div>
+                <div class="col m4">
+                    <label> Hotel Price</label>
+                    <p class="range-field">
+                        <input type="range" onchange="getHotels()"id="price" min="500" max="5000"value="5000">
+                    </p>
+                </div>
+              
+            </div>
+            <div class="container">
+                <div class="row"id="show_hotels_here"></div>
+        
+    
+
+        <script>
+            var show_hotels_here=document.getElementById("show_hotels_here")
+            $(document).ready(function(){
+                $('select').formSelect();
+              });
+
+              function getHotels(){
+                var price=document.getElementById('price')
+                var instance=M.FormSelect.getInstance(document.getElementById('emenities'))
+                var emenities=''
+                var html=''
+                 if(instance){
+                    emenities=(instance.getSelectedValues())
+                 {% comment %} console.log(instance.getSelectedValues()) {% endcomment %}
+                 }
+
+                 fetch(`/api/hotels?emenities=${emenities}&price=${price.value}`).then(result=>result.json()).then(response=>{
+                    for(var i=0;i<response.length;i++)
+                      {
+                        html+=`<div class="col s12 m7">
+                            <div class="card">
+                                <div class="card-image">
+                                <img src="${response[i].hotel_image}">
+                            </div>
+                            <span class="card-title black-text">${response[i].hotel_name}</span>
+                        </div>
+                        <div class="card-action">
+                            <a href="${(response[i].hotel_link)}" onclick="window.open(this.href); return false;" onkeypress="window.open(this.href); return false;">Click Here to See More Information</a>
+                            <span class="new badge"> Price= ${(response[i].hotel_price)}</span>
+                        </div>
+                        <div class="card-content">
+                           
+                            <p>${(response[i].hotel_description).substring(0,250)}</p>
+                        </div>
+                      
+                  
+                    </div>`
+                      }
+                   show_hotels_here.innerHTML=html
+                 })
+
+              }
+
+        </script>
+        
+
+
+
+    <footer class="fo">
+
+      <section class="mb-4">
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt distinctio earum
+          repellat quaerat voluptatibus placeat nam, commodi optio pariatur est quia magnam
+          eum harum corrupti dicta, aliquam sequi voluptate quas.
+        </p>
+      </section>
+     
+      
+    <div>  
+        @Copyright By Hotel Search App  2022- All Right Reserved.   
+        </div>  
+   
+  </footer>
+ 
+   </body>
+</html>

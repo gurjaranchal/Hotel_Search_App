@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewprt">
+        <title>Hotels Search App</title>
+        <script
+  src="https://code.jquery.com/jquery-3.6.0.min.js"
+  integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+  crossorigin="anonymous"></script>
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    </head>
+    <style>
+        .brand-logo{
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            
+        }
+        .fo{
+            
+position: fixed;  
+left: 0px;  
+bottom: 0px;  
+right: 10px;   
+width: 100%;  
+background-color:rgb(58, 56, 56);  
+color: white;  
+text-align: center;  
+            
+
+        }
+        .im{
+            padding: 10px;
+    
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 30%;
+}
+        
+        .con{
+         font-family: 'Times New Roman', Times, serif;
+            text-align: center;
+            padding-left: 50px;    
+      padding-right: 50px;    
+            
+        }
+        .heading1{
+            padding-left: 30px;
+        }
+        
+    </style>
+
+<body>
+    <nav class="blue darken-1">
+           
+        <div class="nav-wrapper">
+            <a href="/" class="brand-logo" id="heading1"> Hotel Search App</a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+              <li><a href="{% url 'home' %}">Home</a></li>
+              <li><a href="{% url 'about' %}">About-Us</a></li>
+              <li><a href="{% url 'facility' %}">Services</a></li>
+              <li> <form>
+                <div class="input-field">
+                  <input id="search" type="search" required>
+                  <label class="label-icon" for="search"><i class="material-icons">Search</i></label>
+                  <i class="material-icons">close</i>
+                </div>
+              </form></li>
+            </ul>
+           
+          </div>
+    </nav> 
+
+    <img src="https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80"class="im"></img>
+    <br><h5 class="con"> The word hotel is derived from the French hôtel, which refers to a French version of the townhouse. The term hotel was used for the first time by the fifth Duke of Devonshire to name a lodging property in London sometime in AD 1760. Historically, in the United Kingdom, Ireland, and several other countries, a townhouse was the residence of a peer or an aristocrat in the capital of major cities. The word hotel could have also derived from the hostel, which means ‘ a place to stay for travelers‘.
+  A hotel is defined by the British Law as a ‘place where bonafide travelers can receive food or shelter, provided he/she is in a position to pay for it and is in a fit condition to be received‘. Hence, a hotel must provide food (and beverage) and lodging to a traveler on payment, but the hotel has the right to refuse if the traveler is not presentable (either drunk, or disorderly, or unkempt) or is not in a position to pay for the services.
+</h5>
+  <footer class="fo">
+  
+     <section class="mb-4">
+       <p>
+         Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt distinctio earum
+         repellat quaerat voluptatibus placeat nam, commodi optio pariatur est quia magnam
+         eum harum corrupti dicta, aliquam sequi voluptate quas.
+       </p>
+     </section>
+    
+     
+   <div>  
+       @Copyright By Hotel Search App  2022- All Right Reserved.   
+       </div>  
+  
+  </footer>
+</body>
+</html>
